@@ -69,6 +69,11 @@ export const GlobalStyle = createGlobalStyle`
         font-family: var(--font-family);
     }
 
+    main{
+        width: 100vw;
+        height: calc(100vh - 86px);
+    }
+
     a, a:after{
         color: var(--font-color);
         cursor: pointer;
@@ -78,4 +83,14 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
+    h2 {
+        width: 100vw;
+        height: 41px;
+        background-color: var(--blue);
+        padding: 9px 16px;
+        line-height: 22px;
+        font-size: 18px;
+        color: var(--font-color-secondary);
+        margin-bottom: 20px;
+    }
 `;

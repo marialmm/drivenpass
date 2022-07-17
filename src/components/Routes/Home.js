@@ -3,36 +3,36 @@ import { Link } from "react-router-dom";
 import { IoLogIn, IoPencil, IoWallet, IoWifi } from "react-icons/io5";
 import { HiIdentification } from "react-icons/hi";
 
-import Header from "./Header";
+import Header from "../Layout/Header";
 
 export default function Home() {
     const dataTypes = [
         {
-            path: "/credentials",
+            path: "/credentials/0",
             icon: <IoLogIn />,
             text: "Credenciais",
             number: 0,
         },
         {
-            path: "/securenotes",
+            path: "/securenotes/0",
             icon: <IoPencil />,
             text: "Notas Seguras",
             number: 0,
         },
         {
-            path: "/cards",
+            path: "/cards/0",
             icon: <IoWallet />,
             text: "Cartões",
             number: 0,
         },
         {
-            path: "/wifi",
+            path: "/wifi/0",
             icon: <IoWifi />,
             text: "Wifi",
             number: 0,
         },
         {
-            path: "/documents",
+            path: "/documents/0",
             icon: <HiIdentification />,
             text: "Documentos",
             number: 0,
@@ -47,7 +47,7 @@ export default function Home() {
                 <ul>
                     {dataTypes.map((dataType) => {
                         return (
-                            <li>
+                            <li key={dataType.text}>
                                 <Link to={dataType.path}>
                                     <div>
                                         {dataType.icon}
@@ -65,16 +65,6 @@ export default function Home() {
 }
 
 const Main = styled.main`
-    h2 {
-        width: 100vw;
-        height: 41px;
-        background-color: var(--blue);
-        padding: 9px 16px;
-        line-height: 22px;
-        font-size: 18px;
-        color: var(--font-color-secondary);
-    }
-
     ul li a {
         text-decoration: none;
         display: flex;
@@ -85,6 +75,10 @@ const Main = styled.main`
     ul li a div{
         display: flex;
         align-items: center;
+    }
+
+    ul li a p{
+        font-size: 18px;
     }
 
     ul li a svg {
