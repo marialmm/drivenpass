@@ -5,9 +5,11 @@ import { useContext, useEffect, useState } from "react";
 import SigninErrorPopUp from "../Layout/PopUp/SinginErrorPopUp";
 import { UserContext } from "../../assets/contexts/userContext";
 import { api } from "../../utils/api";
+import GenericErrorPopUp from "../Layout/PopUp/GenericErrorPopUp";
 
 export default function Signin() {
     const [popUp, setPopUp] = useState(false);
+    const [error, setError] = useState(false);
     const [userData, setUserData] = useState({
         email: "",
         password: "",
@@ -17,7 +19,7 @@ export default function Signin() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(user){
+        if (user) {
             navigate("/home");
         }
     }, [user]);
@@ -34,6 +36,8 @@ export default function Signin() {
         promise.catch((err) => {
             if (err.response.status === 401) {
                 setPopUp(true);
+            } else {
+                setError(true);
             }
         });
     }
@@ -68,6 +72,11 @@ export default function Signin() {
             <Link to="/signup">Primeiro acesso? Crie sua conta!</Link>
             {popUp ? (
                 <SigninErrorPopUp popUp={popUp} setPopUp={setPopUp} />
+            ) : (
+                <></>
+            )}
+            {error ? (
+                <GenericErrorPopUp error={error} setError={setError} />
             ) : (
                 <></>
             )}

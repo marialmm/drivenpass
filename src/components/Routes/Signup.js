@@ -5,9 +5,11 @@ import { useState } from "react";
 
 import { api } from "../../utils/api";
 import SignupErrorPopUp from "../Layout/PopUp/SignupErrorPopUp";
+import GenericErrorPopUp from "../Layout/PopUp/GenericErrorPopUp";
 
 export default function Signup() {
     const [popUp, setPopUp] = useState(false);
+    const [error, setError] = useState(false);
     const [user, setUser] = useState({
         email: "",
         password: "",
@@ -15,20 +17,25 @@ export default function Signup() {
 
     const navigate = useNavigate();
 
-    function sendUserData(e){
+    function sendUserData(e) {
         e.preventDefault();
+        if (user.password.length < 10) {
+            alert("A senha deve ter pelo menos 10 caracteres");
+            return;
+        }
 
         const promise = api.post("/signup", user);
-        promise.then(()=>{
+        promise.then(() => {
             navigate("/");
         });
-        promise.catch(err => {
+        promise.catch((err) => {
             console.log(err.response.data);
-            if(err.response.status === 409){
+            if (err.response.status === 409) {
                 setPopUp(true);
+            } else {
+                setError(true);
             }
-
-        })
+        });
     }
 
     return (
@@ -63,6 +70,11 @@ export default function Signup() {
             </Link>
             {popUp ? (
                 <SignupErrorPopUp popUp={popUp} setPopUp={setPopUp} />
+            ) : (
+                <></>
+            )}
+            {error ? (
+                <GenericErrorPopUp error={error} setError={setError} />
             ) : (
                 <></>
             )}
