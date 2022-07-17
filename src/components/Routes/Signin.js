@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 import { IoLockClosed } from "react-icons/io5";
+import { useState } from "react";
+import SigninErrorPopUp from "../Layout/PopUp/SinginErrorPopUp";
 
 export default function Signin() {
+    const [popUp, setPopUp] = useState(false);
+
     return (
         <Main>
             <IoLockClosed />
@@ -16,6 +19,7 @@ export default function Signin() {
                 <button type="submit">Acessar</button>
             </form>
             <Link to="/signup">Primeiro acesso? Crie sua conta!</Link>
+            {popUp ? <SigninErrorPopUp popUp={popUp} setPopUp={setPopUp}/> :<></>}
         </Main>
     );
 }
