@@ -1,25 +1,76 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoLockClosed } from "react-icons/io5";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SigninErrorPopUp from "../Layout/PopUp/SinginErrorPopUp";
+import { UserContext } from "../../assets/contexts/userContext";
+import { api } from "../../utils/api";
 
 export default function Signin() {
     const [popUp, setPopUp] = useState(false);
+    const [userData, setUserData] = useState({
+        email: "",
+        password: "",
+    });
+
+    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(user){
+            navigate("/home");
+        }
+    }, [user]);
+
+    function sendUserData(e) {
+        e.preventDefault();
+
+        const promise = api.post("/signin", userData);
+        promise.then((res) => {
+            setUser(res.data);
+            navigate("/home");
+        });
+
+        promise.catch((err) => {
+            if (err.response.status === 401) {
+                setPopUp(true);
+            }
+        });
+    }
 
     return (
         <Main>
             <IoLockClosed />
             <h1>DrivenPass</h1>
-            <form>
+            <form onSubmit={sendUserData}>
                 <label htmlFor="email">Usuário (e-mail)</label>
-                <input type="text" name="email" required />
+                <input
+                    type="email"
+                    name="email"
+                    value={userData.email}
+                    onChange={(e) =>
+                        setUserData({ ...userData, email: e.target.value })
+                    }
+                    required
+                />
                 <label htmlFor="password">Senha</label>
-                <input type="password" name="password" required />
+                <input
+                    type="password"
+                    name="password"
+                    value={userData.password}
+                    onChange={(e) =>
+                        setUserData({ ...userData, password: e.target.value })
+                    }
+                    required
+                />
                 <button type="submit">Acessar</button>
             </form>
             <Link to="/signup">Primeiro acesso? Crie sua conta!</Link>
-            {popUp ? <SigninErrorPopUp popUp={popUp} setPopUp={setPopUp}/> :<></>}
+            {popUp ? (
+                <SigninErrorPopUp popUp={popUp} setPopUp={setPopUp} />
+            ) : (
+                <></>
+            )}
         </Main>
     );
 }
