@@ -18,6 +18,7 @@ const Container = styled.header`
     justify-content: space-between;
     align-items: center;
     height: 87px;
+    margin: 0px 16px;
 
     div {
         display: flex;
