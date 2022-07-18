@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 
 export default function WifiInputs({ newData, setNewData }) {
     const [update, setUpdate] = useState(false);
+    const [wifiData, setWifiData] = useState({
+        title: "",
+        password: "",
+        name: "",
+    });
+
     useEffect(() => {
-        setNewData({
-            title: "",
-            password: "",
-            name: ""
-        });
+        setNewData({...wifiData});
         setUpdate(true);
-    }, []);
+    }, [wifiData]);
 
     return update ? (
         <div>
@@ -17,9 +19,9 @@ export default function WifiInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="title"
-                value={newData.title}
+                value={wifiData.title}
                 onChange={(e) =>
-                    setNewData({ ...newData, title: e.target.value })
+                    setWifiData({ ...wifiData, title: e.target.value })
                 }
                 required
             />
@@ -27,9 +29,9 @@ export default function WifiInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="name"
-                value={newData.name}
+                value={wifiData.name}
                 onChange={(e) =>
-                    setNewData({ ...newData, name: e.target.value })
+                    setWifiData({ ...wifiData, name: e.target.value })
                 }
                 required
             />
@@ -37,9 +39,9 @@ export default function WifiInputs({ newData, setNewData }) {
             <input
                 type="password"
                 name="password"
-                value={newData.password}
+                value={wifiData.password}
                 onChange={(e) =>
-                    setNewData({ ...newData, password: e.target.value })
+                    setWifiData({ ...wifiData, password: e.target.value })
                 }
                 required
             />
@@ -48,4 +50,3 @@ export default function WifiInputs({ newData, setNewData }) {
         <></>
     );
 }
-

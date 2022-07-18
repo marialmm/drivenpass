@@ -93,15 +93,23 @@ export default function NewData() {
             <>
                 <h2>{category.text}</h2>
                 <h3>Cadastro</h3>
-                <form>
+                <form onSubmit={sendNewData}>
                     {category.inputs}
                     <div className="footer">
                         <p onClick={() => navigate(-1)}>{"<"} Voltar</p>
-                        <IoCheckmarkCircle />
+                        <button type="submit">
+                            <IoCheckmarkCircle />
+
+                        </button>
                     </div>
                 </form>
             </>
         );
+    }
+
+    function sendNewData(e){
+        e.preventDefault();
+        console.log(newData);
     }
 
     return (
@@ -173,6 +181,11 @@ const Main = styled.main`
         justify-content: space-between;
         align-items: center;
         width: 94%;
+    }
+
+    form div.footer button {
+        border: none;
+        background: none;
     }
 
     form div.footer svg {

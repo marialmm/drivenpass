@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 
 export default function CardInputs({ newData, setNewData }) {
     const [update, setUpdate] = useState(false);
+    const [cardData, setCardData] = useState({
+        number: "",
+        name: "",
+        cvv: "",
+        expirationDate: "",
+        password: "",
+        isVirtual: false,
+        type: "credit",
+        title: "",
+    });
 
     useEffect(() => {
-        setNewData({
-            number: "",
-            name: "",
-            cvv: "",
-            expirationDate: "",
-            password: "",
-            isVirtual: false,
-            type: "",
-            title: "",
-        });
+        setNewData({ ...cardData });
         setUpdate(true);
-    }, []);
+    }, [cardData]);
 
     return update ? (
         <div>
@@ -23,9 +24,9 @@ export default function CardInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="title"
-                value={newData.title}
+                value={cardData.title}
                 onChange={(e) =>
-                    setNewData({ ...newData, title: e.target.value })
+                    setCardData({ ...cardData, title: e.target.value })
                 }
                 required
             />
@@ -33,9 +34,9 @@ export default function CardInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="number"
-                value={newData.number}
+                value={cardData.number}
                 onChange={(e) =>
-                    setNewData({ ...newData, number: e.target.value })
+                    setCardData({ ...cardData, number: e.target.value })
                 }
                 required
             />
@@ -43,9 +44,9 @@ export default function CardInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="name"
-                value={newData.name}
+                value={cardData.name}
                 onChange={(e) =>
-                    setNewData({ ...newData, name: e.target.value })
+                    setCardData({ ...cardData, name: e.target.value })
                 }
                 required
             />
@@ -53,9 +54,9 @@ export default function CardInputs({ newData, setNewData }) {
             <input
                 type="password"
                 name="cvv"
-                value={newData.cvv}
+                value={cardData.cvv}
                 onChange={(e) =>
-                    setNewData({ ...newData, cvv: e.target.value })
+                    setCardData({ ...cardData, cvv: e.target.value })
                 }
                 required
             />
@@ -63,9 +64,9 @@ export default function CardInputs({ newData, setNewData }) {
             <input
                 type="password"
                 name="password"
-                value={newData.password}
+                value={cardData.password}
                 onChange={(e) =>
-                    setNewData({ ...newData, password: e.target.value })
+                    setCardData({ ...cardData, password: e.target.value })
                 }
                 required
             />
@@ -73,9 +74,9 @@ export default function CardInputs({ newData, setNewData }) {
             <input
                 type="password"
                 name="expirationDate"
-                value={newData.expirationDate}
+                value={cardData.expirationDate}
                 onChange={(e) =>
-                    setNewData({ ...newData, expirationDate: e.target.value })
+                    setCardData({ ...cardData, expirationDate: e.target.value })
                 }
                 required
             />
@@ -83,19 +84,21 @@ export default function CardInputs({ newData, setNewData }) {
             <select
                 name="isVirtual"
                 onChange={(e) =>
-                    setNewData({ ...newData, isVirtual: e.target.value })
+                    setCardData({ ...cardData, isVirtual: e.target.value })
                 }
+                value={cardData.isVirtual}
                 required
             >
-                <option value={true}>Sim</option>
                 <option value={false}>Não</option>
+                <option value={true}>Sim</option>
             </select>
             <label htmlFor="type">Tipo</label>
             <select
                 name="type"
                 onChange={(e) =>
-                    setNewData({ ...newData, type: e.target.value })
+                    setNewData({ ...cardData, type: e.target.value })
                 }
+                value={cardData.type}
                 required
             >
                 <option value={"credit"}>Crédito</option>

@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 
 export default function CredentialInputs({ newData, setNewData }) {
     const [update, setUpdate] = useState(false);
+    const [credentialData, setCredentialData] = useState({
+        title: "",
+        password: "",
+        username: "",
+        url: "",
+    });
+
     useEffect(() => {
-        setNewData({
-            title: "",
-            password: "",
-            username: "",
-            url: "",
-        });
+        setNewData({...credentialData});
         setUpdate(true);
-    }, []);
+    }, [credentialData]);
 
     return update ? (
         <div>
@@ -18,9 +20,9 @@ export default function CredentialInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="title"
-                value={newData.title}
+                value={credentialData.title}
                 onChange={(e) =>
-                    setNewData({ ...newData, title: e.target.value })
+                    setCredentialData({ ...credentialData, title: e.target.value })
                 }
                 required
             />
@@ -28,9 +30,9 @@ export default function CredentialInputs({ newData, setNewData }) {
             <input
                 type="url"
                 name="url"
-                value={newData.url}
+                value={credentialData.url}
                 onChange={(e) =>
-                    setNewData({ ...newData, url: e.target.value })
+                    setCredentialData({ ...credentialData, url: e.target.value })
                 }
                 required
             />
@@ -38,9 +40,9 @@ export default function CredentialInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="username"
-                value={newData.username}
+                value={credentialData.username}
                 onChange={(e) =>
-                    setNewData({ ...newData, username: e.target.value })
+                    setCredentialData({ ...credentialData, username: e.target.value })
                 }
                 required
             />
@@ -48,9 +50,9 @@ export default function CredentialInputs({ newData, setNewData }) {
             <input
                 type="password"
                 name="password"
-                value={newData.password}
+                value={credentialData.password}
                 onChange={(e) =>
-                    setNewData({ ...newData, password: e.target.value })
+                    setCredentialData({ ...credentialData, password: e.target.value })
                 }
                 required
             />
@@ -59,4 +61,3 @@ export default function CredentialInputs({ newData, setNewData }) {
         <></>
     );
 }
-

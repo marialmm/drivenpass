@@ -2,18 +2,20 @@ import { useEffect, useState } from "react";
 
 export default function DocumentInputs({ newData, setNewData }) {
     const [update, setUpdate] = useState(false);
+    const [documentData, setDocumentData] = useState({
+        fullName: "",
+        emissionDate: "",
+        issuingAgency: "",
+        number: "",
+        type: "rg",
+        title: "",
+        validateDate: "",
+    });
+
     useEffect(() => {
-        setNewData({
-            fullName: "",
-            emissionDate: "",
-            issuingAgency: "",
-            number: "",
-            type: "",
-            title: "",
-            validateDate: "",
-        });
+        setNewData({...documentData});
         setUpdate(true);
-    }, []);
+    }, [documentData]);
 
     return update ? (
         <div>
@@ -21,9 +23,9 @@ export default function DocumentInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="title"
-                value={newData.title}
+                value={documentData.title}
                 onChange={(e) =>
-                    setNewData({ ...newData, title: e.target.value })
+                    setDocumentData({ ...documentData, title: e.target.value })
                 }
                 required
             />
@@ -31,9 +33,9 @@ export default function DocumentInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="fullName"
-                value={newData.fullName}
+                value={documentData.fullName}
                 onChange={(e) =>
-                    setNewData({ ...newData, fullName: e.target.value })
+                    setDocumentData({ ...documentData, fullName: e.target.value })
                 }
                 required
             />
@@ -41,9 +43,9 @@ export default function DocumentInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="number"
-                value={newData.number}
+                value={documentData.number}
                 onChange={(e) =>
-                    setNewData({ ...newData, number: e.target.value })
+                    setDocumentData({ ...documentData, number: e.target.value })
                 }
                 required
             />
@@ -51,9 +53,9 @@ export default function DocumentInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="issuingAgency"
-                value={newData.issuingAgency}
+                value={documentData.issuingAgency}
                 onChange={(e) =>
-                    setNewData({ ...newData, issuingAgency: e.target.value })
+                    setDocumentData({ ...documentData, issuingAgency: e.target.value })
                 }
                 required
             />
@@ -61,9 +63,9 @@ export default function DocumentInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="emissionDate"
-                value={newData.emissionDate}
+                value={documentData.emissionDate}
                 onChange={(e) =>
-                    setNewData({ ...newData, emissionDate: e.target.value })
+                    setDocumentData({ ...documentData, emissionDate: e.target.value })
                 }
                 required
             />
@@ -71,9 +73,9 @@ export default function DocumentInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="validateDate"
-                value={newData.validateDate}
+                value={documentData.validateDate}
                 onChange={(e) =>
-                    setNewData({ ...newData, validateDate: e.target.value })
+                    setDocumentData({ ...documentData, validateDate: e.target.value })
                 }
                 required
             />
@@ -81,8 +83,9 @@ export default function DocumentInputs({ newData, setNewData }) {
             <select
                 name="type"
                 onChange={(e) =>
-                    setNewData({ ...newData, type: e.target.value })
+                    setDocumentData({ ...documentData, type: e.target.value })
                 }
+                value={documentData.type}
                 required
             >
                 <option value="rg">RG</option>

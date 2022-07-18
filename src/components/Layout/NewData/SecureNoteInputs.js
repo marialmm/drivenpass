@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 
 export default function SecureNoteInputs({ newData, setNewData }) {
     const [update, setUpdate] = useState(false);
+    const [secureNoteData, setSecureNoteData] = useState({
+        title: "",
+        note: "",
+    });
+
     useEffect(() => {
         setNewData({
-            title: "",
-            note: "",
+            ...secureNoteData,
         });
         setUpdate(true);
-    }, []);
+    }, [secureNoteData]);
 
     return update ? (
         <div>
@@ -16,17 +20,25 @@ export default function SecureNoteInputs({ newData, setNewData }) {
             <input
                 type="text"
                 name="title"
-                value={newData.title}
+                value={secureNoteData.title}
                 onChange={(e) =>
-                    setNewData({ ...newData, title: e.target.value })
+                    setSecureNoteData({
+                        ...secureNoteData,
+                        title: e.target.value,
+                    })
                 }
                 required
             />
             <label htmlFor="note">Nota Segura</label>
             <textarea
                 name="note"
-                onChange={(e) => setNewData({ note: e.target.value })}
-                value={newData.note}
+                onChange={(e) =>
+                    setSecureNoteData({
+                        ...secureNoteData,
+                        note: e.target.value,
+                    })
+                }
+                value={secureNoteData.note}
                 required
             />
         </div>
