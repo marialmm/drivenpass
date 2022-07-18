@@ -22,6 +22,7 @@ export default function CredentialInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, title: e.target.value })
                 }
+                required
             />
             <label htmlFor="url">URL</label>
             <input
@@ -31,6 +32,7 @@ export default function CredentialInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, url: e.target.value })
                 }
+                required
             />
             <label htmlFor="username">Usuário</label>
             <input
@@ -40,6 +42,7 @@ export default function CredentialInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, username: e.target.value })
                 }
+                required
             />
             <label htmlFor="password">Senha</label>
             <input
@@ -49,6 +52,7 @@ export default function CredentialInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, password: e.target.value })
                 }
+                required
             />
         </div>
     ) : (

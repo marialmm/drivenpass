@@ -12,6 +12,7 @@ import styled from "styled-components";
 import CredentialInputs from "../Layout/NewData/CredentialInputs";
 import { useNavigate } from "react-router-dom";
 import CardInputs from "../Layout/NewData/CardInputs";
+import DocumentInputs from "../Layout/NewData/DocumentInputs";
 
 export default function NewData() {
     const [category, setCategory] = useState({});
@@ -49,6 +50,9 @@ export default function NewData() {
             icon: <HiIdentification />,
             text: "Documentos",
             category: "document",
+            inputs: (
+                <DocumentInputs newData={newData} setNewData={setNewData} />
+            ),
         },
     ];
 

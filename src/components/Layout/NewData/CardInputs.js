@@ -27,6 +27,7 @@ export default function CardInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, title: e.target.value })
                 }
+                required
             />
             <label htmlFor="number">Número</label>
             <input
@@ -36,6 +37,7 @@ export default function CardInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, number: e.target.value })
                 }
+                required
             />
             <label htmlFor="name">Nome</label>
             <input
@@ -45,6 +47,7 @@ export default function CardInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, name: e.target.value })
                 }
+                required
             />
             <label htmlFor="cvv">Código de segurança</label>
             <input
@@ -54,6 +57,7 @@ export default function CardInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, cvv: e.target.value })
                 }
+                required
             />
             <label htmlFor="password">Senha</label>
             <input
@@ -63,6 +67,7 @@ export default function CardInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, password: e.target.value })
                 }
+                required
             />
             <label htmlFor="expirationDate">Data de expiração</label>
             <input
@@ -72,6 +77,7 @@ export default function CardInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, expira: e.target.value })
                 }
+                required
             />
             <label htmlFor="isVirtual">Virtual?</label>
             <select
@@ -79,6 +85,7 @@ export default function CardInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, isVirtual: e.target.value })
                 }
+                required
             >
                 <option value={true}>Sim</option>
                 <option value={false}>Não</option>
@@ -89,6 +96,7 @@ export default function CardInputs({ newData, setNewData }) {
                 onChange={(e) =>
                     setNewData({ ...newData, type: e.target.value })
                 }
+                required
             >
                 <option value={"credit"}>Crédito</option>
                 <option value={"debit"}>Débito</option>
