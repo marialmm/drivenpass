@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     IoLogIn,
     IoPencil,
@@ -26,6 +26,8 @@ export default function Home() {
     });
     const [error, setError] = useState(false);
 
+    const navigate = useNavigate();
+
     const dataTypes = [
         {
             path: "/credentials/0",
@@ -48,7 +50,7 @@ export default function Home() {
         {
             path: "/wifi/0",
             icon: <IoWifi />,
-            text: "Wifi",
+            text: "Senhas de Wifi",
             number: datas.wifi,
         },
         {
@@ -92,7 +94,7 @@ export default function Home() {
                         );
                     })}
                 </ul>
-                <IoAddCircle />
+                <IoAddCircle onClick={() => navigate("/new")} />
                 {error ? (
                     <GenericErrorPopUp error={error} setError={setError} />
                 ) : (

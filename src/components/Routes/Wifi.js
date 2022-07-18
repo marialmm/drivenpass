@@ -18,6 +18,6 @@ export default function Wifi() {
         dataFormat={dataFormat}
     />;
     } else {
-        return <Datas title="Wifi" icon={<IoWifi />} path="wifi" />;
+        return <Datas title="Senhas de Wifi" icon={<IoWifi />} path="wifi" />;
     }
 }
