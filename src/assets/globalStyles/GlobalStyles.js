@@ -73,7 +73,7 @@ export const GlobalStyle = createGlobalStyle`
     main{
         width: 100vw;
         height: calc(100vh - 86px);
-        margin-top: 86px;
+        margin: 86px 0 80px;
     }
 
     a, a:after{
