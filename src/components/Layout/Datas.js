@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IoAddCircle } from "react-icons/io5";
 import Header from "./Header";
@@ -12,6 +12,7 @@ export default function Datas({ icon, title, path }) {
     const [error, setError] = useState(false);
 
     const { header } = useContext(UserContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const promise = api.get(`/${path}`, header);
@@ -42,7 +43,7 @@ export default function Datas({ icon, title, path }) {
                     })}
                 </ul>
 
-                <IoAddCircle />
+                <IoAddCircle onClick={() => navigate("/new")} />
                 {error ? (
                     <GenericErrorPopUp error={error} setError={setError} />
                 ) : (

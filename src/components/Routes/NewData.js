@@ -13,6 +13,7 @@ import CredentialInputs from "../Layout/NewData/CredentialInputs";
 import { useNavigate } from "react-router-dom";
 import CardInputs from "../Layout/NewData/CardInputs";
 import DocumentInputs from "../Layout/NewData/DocumentInputs";
+import SecureNoteInputs from "../Layout/NewData/SecureNoteInputs";
 
 export default function NewData() {
     const [category, setCategory] = useState({});
@@ -33,7 +34,9 @@ export default function NewData() {
             icon: <IoPencil />,
             text: "Notas Seguras",
             category: "securenote",
-            inputs: "",
+            inputs: (
+                <SecureNoteInputs newData={newData} setNewData={setNewData} />
+            ),
         },
         {
             icon: <IoWallet />,
@@ -149,12 +152,16 @@ const Main = styled.main`
     }
 
     form input,
-    form select {
+    form select, form textarea {
         border: 3px solid #005985;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
         border-radius: 5px;
         height: 40px;
         margin-bottom: 16px;
+    }
+
+    form textarea{
+        height: 100px;
     }
 
     form div.footer {

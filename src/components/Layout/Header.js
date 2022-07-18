@@ -28,6 +28,7 @@ const Container = styled.header`
     width: 100vw;
     background-color: var(--background);
     border-bottom: solid 3px var(--blue);
+    z-index: 2;
 
     div {
         display: flex;
