@@ -26,6 +26,7 @@ export default function SecureNoteInputs({ newData, setNewData }) {
             <textarea
                 name="note"
                 onChange={(e) => setNewData({ note: e.target.value })}
+                value={newData.note}
                 required
             />
         </div>

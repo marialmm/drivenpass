@@ -72,10 +72,10 @@ export default function CardInputs({ newData, setNewData }) {
             <label htmlFor="expirationDate">Data de expiração</label>
             <input
                 type="password"
-                name="expira"
-                value={newData.expira}
+                name="expirationDate"
+                value={newData.expirationDate}
                 onChange={(e) =>
-                    setNewData({ ...newData, expira: e.target.value })
+                    setNewData({ ...newData, expirationDate: e.target.value })
                 }
                 required
             />

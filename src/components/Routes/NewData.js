@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import CardInputs from "../Layout/NewData/CardInputs";
 import DocumentInputs from "../Layout/NewData/DocumentInputs";
 import SecureNoteInputs from "../Layout/NewData/SecureNoteInputs";
+import WifiInputs from "../Layout/NewData/WifiInputs";
 
 export default function NewData() {
     const [category, setCategory] = useState({});
@@ -48,6 +49,7 @@ export default function NewData() {
             icon: <IoWifi />,
             text: "Senhas de Wifi",
             category: "wifi",
+            inputs: <WifiInputs newData={newData} setNewData={setNewData} />,
         },
         {
             icon: <HiIdentification />,
@@ -152,7 +154,8 @@ const Main = styled.main`
     }
 
     form input,
-    form select, form textarea {
+    form select,
+    form textarea {
         border: 3px solid #005985;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
         border-radius: 5px;
@@ -160,7 +163,7 @@ const Main = styled.main`
         margin-bottom: 16px;
     }
 
-    form textarea{
+    form textarea {
         height: 100px;
     }
 

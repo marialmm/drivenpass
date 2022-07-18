@@ -33,7 +33,7 @@ export default function DocumentInputs({ newData, setNewData }) {
                 name="fullName"
                 value={newData.fullName}
                 onChange={(e) =>
-                    setNewData({ ...newData, url: e.target.value })
+                    setNewData({ ...newData, fullName: e.target.value })
                 }
                 required
             />
@@ -43,7 +43,7 @@ export default function DocumentInputs({ newData, setNewData }) {
                 name="number"
                 value={newData.number}
                 onChange={(e) =>
-                    setNewData({ ...newData, username: e.target.value })
+                    setNewData({ ...newData, number: e.target.value })
                 }
                 required
             />
@@ -53,7 +53,7 @@ export default function DocumentInputs({ newData, setNewData }) {
                 name="issuingAgency"
                 value={newData.issuingAgency}
                 onChange={(e) =>
-                    setNewData({ ...newData, password: e.target.value })
+                    setNewData({ ...newData, issuingAgency: e.target.value })
                 }
                 required
             />
@@ -63,7 +63,7 @@ export default function DocumentInputs({ newData, setNewData }) {
                 name="emissionDate"
                 value={newData.emissionDate}
                 onChange={(e) =>
-                    setNewData({ ...newData, password: e.target.value })
+                    setNewData({ ...newData, emissionDate: e.target.value })
                 }
                 required
             />
@@ -73,7 +73,7 @@ export default function DocumentInputs({ newData, setNewData }) {
                 name="validateDate"
                 value={newData.validateDate}
                 onChange={(e) =>
-                    setNewData({ ...newData, password: e.target.value })
+                    setNewData({ ...newData, validateDate: e.target.value })
                 }
                 required
             />
