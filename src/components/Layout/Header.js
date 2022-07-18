@@ -18,7 +18,14 @@ const Container = styled.header`
     justify-content: space-between;
     align-items: center;
     height: 87px;
-    margin: 0px 16px;
+    padding: 0px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    background-color: var(--background);
+    border-bottom: solid 3px var(--blue);
 
     div {
         display: flex;

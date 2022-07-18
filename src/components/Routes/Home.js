@@ -1,43 +1,69 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { IoLogIn, IoPencil, IoWallet, IoWifi } from "react-icons/io5";
+import {
+    IoLogIn,
+    IoPencil,
+    IoWallet,
+    IoWifi,
+    IoAddCircle,
+} from "react-icons/io5";
 import { HiIdentification } from "react-icons/hi";
 
 import Header from "../Layout/Header";
+import { useContext, useEffect, useState } from "react";
+import { api } from "../../utils/api";
+import { UserContext } from "../../assets/contexts/userContext";
 
 export default function Home() {
+    const [datas, setDatas] = useState({
+        credentials: 0,
+        secureNotes: 0,
+        documents: 0,
+        cards: 0,
+        wifi: 0,
+    });
+
     const dataTypes = [
         {
             path: "/credentials/0",
             icon: <IoLogIn />,
             text: "Credenciais",
-            number: 0,
+            number: datas.credentials,
         },
         {
             path: "/securenotes/0",
             icon: <IoPencil />,
             text: "Notas Seguras",
-            number: 0,
+            number: datas.secureNotes,
         },
         {
             path: "/cards/0",
             icon: <IoWallet />,
             text: "Cartões",
-            number: 0,
+            number: datas.cards,
         },
         {
             path: "/wifi/0",
             icon: <IoWifi />,
             text: "Wifi",
-            number: 0,
+            number: datas.wifi,
         },
         {
             path: "/documents/0",
             icon: <HiIdentification />,
             text: "Documentos",
-            number: 0,
+            number: datas.documents,
         },
     ];
+
+    const { header } = useContext(UserContext);
+
+    useEffect(() => {
+        const promise = api.get("/info", header);
+        promise.then((response) => {
+            setDatas(response.data);
+        });
+    }, []);
 
     return (
         <>
@@ -59,12 +85,14 @@ export default function Home() {
                         );
                     })}
                 </ul>
+                <IoAddCircle />
             </Main>
         </>
     );
 }
 
 const Main = styled.main`
+
     ul li a {
         text-decoration: none;
         display: flex;
@@ -72,12 +100,12 @@ const Main = styled.main`
         margin: 30px 20px 0px 16px;
     }
 
-    ul li a div{
+    ul li a div {
         display: flex;
         align-items: center;
     }
 
-    ul li a p{
+    ul li a p {
         font-size: 18px;
     }
 
@@ -87,13 +115,21 @@ const Main = styled.main`
         margin-right: 24px;
     }
 
-    ul li a div:last-child{
+    ul li a div:last-child {
         background-color: var(--blue);
-        font-size:18px;
+        font-size: 18px;
         color: var(--font-color-secondary);
         width: 35px;
         height: 35px;
         justify-content: center;
         border-radius: 50%;
     }
+
+    & > svg {
+        font-size: 76px;
+        color: var(--blue);
+        position: absolute;
+        right: 11px;
+    }
+
 `;

@@ -33,6 +33,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
+        margin: 0;
     }
     ol, ul {
         list-style: none;
@@ -72,6 +73,7 @@ export const GlobalStyle = createGlobalStyle`
     main{
         width: 100vw;
         height: calc(100vh - 86px);
+        margin-top: 86px;
     }
 
     a, a:after{
