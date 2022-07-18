@@ -8,11 +8,13 @@ import {
     IoAddCircle,
 } from "react-icons/io5";
 import { HiIdentification } from "react-icons/hi";
+import { useContext, useEffect, useState } from "react";
+
+import { UserContext } from "../../assets/contexts/userContext";
+import { api } from "../../utils/api";
 
 import Header from "../Layout/Header";
-import { useContext, useEffect, useState } from "react";
-import { api } from "../../utils/api";
-import { UserContext } from "../../assets/contexts/userContext";
+import GenericErrorPopUp from "../Layout/PopUp/GenericErrorPopUp";
 
 export default function Home() {
     const [datas, setDatas] = useState({
@@ -22,6 +24,7 @@ export default function Home() {
         cards: 0,
         wifi: 0,
     });
+    const [error, setError] = useState(false);
 
     const dataTypes = [
         {
@@ -63,7 +66,11 @@ export default function Home() {
         promise.then((response) => {
             setDatas(response.data);
         });
-    }, []);
+        promise.catch((err) => {
+            console.log(err.response.data);
+            setError(true);
+        });
+    }, [error]);
 
     return (
         <>
@@ -86,13 +93,17 @@ export default function Home() {
                     })}
                 </ul>
                 <IoAddCircle />
+                {error ? (
+                    <GenericErrorPopUp error={error} setError={setError} />
+                ) : (
+                    <></>
+                )}
             </Main>
         </>
     );
 }
 
 const Main = styled.main`
-
     ul li a {
         text-decoration: none;
         display: flex;
@@ -131,5 +142,4 @@ const Main = styled.main`
         position: absolute;
         right: 11px;
     }
-
 `;

@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { IoLockClosed, IoLogOut } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+    const navigate = useNavigate();
     return (
         <Container>
-            <div>
+            <div onClick={() => navigate("/home")}>
                 <IoLockClosed />
                 <h1>DrivenPass</h1>
             </div>

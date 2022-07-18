@@ -2,18 +2,27 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { IoAddCircle } from "react-icons/io5";
 import Header from "./Header";
+import { useContext, useEffect, useState } from "react";
+import { api } from "../../utils/api";
+import GenericErrorPopUp from "./PopUp/GenericErrorPopUp";
+import { UserContext } from "../../assets/contexts/userContext";
 
 export default function Datas({ icon, title, path }) {
-    const datas = [
-        {
-            title: "Site 1",
-            id: 1,
-        },
-        {
-            title: "Site 2",
-            id: 2,
-        },
-    ];
+    const [datas, setDatas] = useState([]);
+    const [error, setError] = useState(false);
+
+    const { header } = useContext(UserContext);
+
+    useEffect(() => {
+        const promise = api.get(`/${path}`, header);
+        promise.then((response) => {
+            setDatas(response.data);
+        });
+        promise.catch((err) => {
+            console.log(err.response.data);
+            setError(true);
+        });
+    }, []);
 
     return (
         <>
@@ -34,6 +43,11 @@ export default function Datas({ icon, title, path }) {
                 </ul>
 
                 <IoAddCircle />
+                {error ? (
+                    <GenericErrorPopUp error={error} setError={setError} />
+                ) : (
+                    <></>
+                )}
             </Main>
         </>
     );
