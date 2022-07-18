@@ -11,6 +11,7 @@ import Header from "../Layout/Header";
 import styled from "styled-components";
 import CredentialInputs from "../Layout/NewData/CredentialInputs";
 import { useNavigate } from "react-router-dom";
+import CardInputs from "../Layout/NewData/CardInputs";
 
 export default function NewData() {
     const [category, setCategory] = useState({});
@@ -31,11 +32,13 @@ export default function NewData() {
             icon: <IoPencil />,
             text: "Notas Seguras",
             category: "securenote",
+            inputs: "",
         },
         {
             icon: <IoWallet />,
             text: "Cartões",
             category: "card",
+            inputs: <CardInputs newData={newData} setNewData={setNewData} />,
         },
         {
             icon: <IoWifi />,
@@ -141,7 +144,8 @@ const Main = styled.main`
         margin-bottom: 10px;
     }
 
-    form input {
+    form input,
+    form select {
         border: 3px solid #005985;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
         border-radius: 5px;
@@ -162,7 +166,7 @@ const Main = styled.main`
         color: var(--green);
     }
 
-    form div.footer p{
+    form div.footer p {
         font-size: 18px;
         text-decoration: underline;
     }

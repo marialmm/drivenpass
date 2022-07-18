@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 
 export default function CredentialInputs({ newData, setNewData }) {
     const [update, setUpdate] = useState(false);
